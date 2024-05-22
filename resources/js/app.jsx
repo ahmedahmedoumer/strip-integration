@@ -1,14 +1,20 @@
+import '../css/app.css'; // Ensure to use the correct relative path
+import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import '../css/app.css';
+import { Provider } from 'react-redux';
+import store from './store';
+import Counter from './components/Counter';
 
 const routes = [
   {
     path: '/',
-    element: <div className="text-center text-blue-500 text-4xl">Hello Laravel 11 from React 18</div>,
+    element: <Counter />,
   },
 ];
 
 createRoot(document.getElementById('root')).render(
-  <RouterProvider router={createBrowserRouter(routes)} />
+  <Provider store={store}>
+    <RouterProvider router={createBrowserRouter(routes)} />
+  </Provider>
 );
