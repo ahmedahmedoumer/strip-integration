@@ -22,6 +22,18 @@ class PlanFactory extends Factory
             //
         ];
     }
+    public function Free()
+    {
+        return $this->state([
+            'id'=>Str::uuid()->toString(),
+            'name'=>'Free',
+            'stripe_name' => 'Free',
+            'stripe_id' => 'price_1PL79tFlHt4LRnKP2hzDJ06Q',
+            'slug'=>'Free',
+            'price' => 0,
+            'description'=>'Free  subscription'
+        ]);
+    }
     public function goldLevel()
     {
         return $this->state([
@@ -35,16 +47,16 @@ class PlanFactory extends Factory
         ]);
     }
 
-    public function premium()
+    public function Standard()
     {
         return $this->state([
             'id'=>Str::uuid()->toString(),
-            'stripe_name' => 'Premium',
-            'name'=>'premium',
-            'stripe_id' => 'price_1PKyy7FlHt4LRnKPkkzBF0Gk',
-            'price' => 30,
-            'slug'=>'premium',
-            'description'=>'Premium Level subscription'
+            'stripe_name' => 'Standard',
+            'name'=>'Standard',
+            'stripe_id' => 'price_1PKyxdFlHt4LRnKPEHuGTLF3',
+            'price' => 20,
+            'slug'=>'Standard',
+            'description'=>'Standard Level subscription'
         ]);
     }
 }

@@ -21,7 +21,9 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        Plan::factory()->Free()->create();
+        Plan::factory()->Standard()->create();
         Plan::factory()->goldLevel()->create();
-        Plan::factory()->premium()->create();
+
     }
 }
