@@ -11,6 +11,10 @@ export const increment = () => ({
     type: 'GET_PLANS',
     payload:data,
   });
+  export const createSubscriptionSuccess = (data) => ({
+    type: 'CREATE_SUBSCRIPTION',
+    payload:data,
+  });
 
   export const getPlanData = () => {
     return (dispatch) => {
@@ -31,5 +35,31 @@ export const increment = () => ({
         });
     };
   };
+  export const createSubscription=(paymentData)=>{
+    console.log(paymentData,'paymentData')
+    return(dispatch)=>{
+      axios({
+        url:'/subscription',
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token')}`, // Assuming you're using token-based authentication
+        },
+          body: JSON.stringify({
+            paymentMethodId: paymentMethod.id,
+            email: email,
+            plan: 'price_1PKyy7FlHt4LRnKPkkzBF0Gj', // Replace with your actual plan ID
+        })
+        .then((response)=>{
+          dispatch(createSubscriptionSuccess(response?.data))
+           console.log(data)
+        })
+        .catch((error)=>{
+          console.log(error);
+        })
+    });
+    } 
+  }
+ 
   
   

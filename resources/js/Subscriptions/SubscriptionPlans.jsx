@@ -1,11 +1,15 @@
 // components/SubscriptionPlans.js
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PlanCard from '../components/PlanCard';
 import { getPlanData } from '../store/actions/counterActions';
+import CardInput from './CardInput';
 // import { getPlanData } from '../store/actions/counterActions';
 
 const SubscriptionPlans = (props) => {
+    const [isVisible,setIsVisible]=useState(false);
+    const [selectedData,setSelected]=useState({});
+
     useEffect(() => {
         props.getPlanListData();
     }, []);
@@ -56,7 +60,7 @@ const SubscriptionPlans = (props) => {
             features:dummyPlans[index]?.features??[],
           }
     });
-    
+
   console.log(newData,"data");
     
 
@@ -64,16 +68,30 @@ const SubscriptionPlans = (props) => {
         <div className="container mx-auto">
             <h1 className="text-3xl font-semibold text-center my-8">Choose Your Plan</h1>
             <div className="grid grid-cols-3 gap-8">
-                {newData?.map(plan => (
-                    <PlanCard
-                        key={plan.id}
-                        styling="hover:scale-110"
-                        name={plan.name}
-                        price={plan.price}
-                        description={plan.description}
-                        features={plan.features}
-                    />
-                ))}
+                {!isVisible 
+                 ?
+                        newData?.map(plan => (
+                            <PlanCard
+                                key={plan.id}
+                                styling="hover:scale-110"
+                                plan={plan}
+                                setSelected={setSelected}
+                                setIsVisible={setIsVisible}
+                            />
+                        ))
+                 :
+                        <CardInput
+                            key={selectedData.id}
+                            styling="hover:scale-110"
+                            name={selectedData.name}
+                            price={selectedData.price}
+                            description={selectedData.description}
+                            plan_id={selectedData?.stripe_id}
+                            features={selectedData.features}
+                            onClose={()=>setIsVisible(false)}
+                        />
+            }
+                
             </div>
         </div>
     );

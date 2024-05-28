@@ -7,19 +7,21 @@ import { Provider } from 'react-redux';
 import store from './store';
 import Counter from './components/Counter';
 import SubscriptionPlans from './Subscriptions/SubscriptionPlans';
+import CardInput from './Subscriptions/CardInput';
+import Login from './components/Auth/Login';
 
 const routes = [
   {
     path: '/',
-    element: <Counter />,
+    element: <Login />,
   },
   {
     path: '/plans',
     element: <SubscriptionPlans />,
   },
   {
-    path: '/plan-select',
-    element: <SubscriptionPlans />,
+    path: '/card-info',
+    element: <CardInput />,
   },
 ];
 
