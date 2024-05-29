@@ -31,8 +31,9 @@ const Login = () => {
             }
     
             const data = await response.json();
+            localStorage.setItem('token',data?.data?.token)
             // Handle successful login response, such as storing token in localStorage
-            console.log(data);
+            console.log(data,"ahmedin");
         } catch (error) {
             console.error('Login error:', error.message);
         }

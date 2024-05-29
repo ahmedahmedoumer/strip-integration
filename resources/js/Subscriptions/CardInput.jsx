@@ -45,7 +45,8 @@ const CardInput = () => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': csrfToken  // Include CSRF token in headers
+                'X-CSRF-TOKEN': csrfToken,
+                'Authorization': `Bearer ${localStorage.getItem('token')}` // Add the authorization token
             },
             body: JSON.stringify({
                 paymentMethodId: paymentMethod.id,

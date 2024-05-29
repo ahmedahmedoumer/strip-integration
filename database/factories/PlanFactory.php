@@ -25,7 +25,6 @@ class PlanFactory extends Factory
     public function Free()
     {
         return $this->state([
-            'id'=>Str::uuid()->toString(),
             'name'=>'Free',
             'stripe_name' => 'Free',
             'stripe_id' => 'price_1PL79tFlHt4LRnKP2hzDJ06Q',
@@ -37,12 +36,11 @@ class PlanFactory extends Factory
     public function goldLevel()
     {
         return $this->state([
-            'id'=>Str::uuid()->toString(),
             'name'=>'gold',
             'stripe_name' => 'Gold Level',
             'stripe_id' => 'price_1PKyy7FlHt4LRnKPkkzBF0Gj',
             'slug'=>'gold',
-            'price' => 20,
+            'price' => 3000,
             'description'=>'Gold Level subscription'
         ]);
     }
@@ -50,11 +48,10 @@ class PlanFactory extends Factory
     public function Standard()
     {
         return $this->state([
-            'id'=>Str::uuid()->toString(),
             'stripe_name' => 'Standard',
             'name'=>'Standard',
             'stripe_id' => 'price_1PKyxdFlHt4LRnKPEHuGTLF3',
-            'price' => 20,
+            'price' => 2000,
             'slug'=>'Standard',
             'description'=>'Standard Level subscription'
         ]);

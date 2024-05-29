@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('subscriptions', function (Blueprint $table) {
-            $table->uuid()->primary();
+            $table->id();
             $table->foreignId('user_id');
             $table->string('type');
             $table->string('stripe_id')->unique();
@@ -22,9 +22,10 @@ return new class extends Migration
             $table->timestamp('trial_ends_at')->nullable();
             $table->timestamp('ends_at')->nullable();
             $table->timestamps();
-
+        
             $table->index(['user_id', 'stripe_status']);
         });
+        
     }
 
     /**

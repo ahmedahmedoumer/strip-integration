@@ -66,6 +66,14 @@ const SubscriptionPlans = (props) => {
 
     return (
         <div className="container mx-auto">
+             <div class="bg-gray-200 flex justify-end shadow-md space-x-4">
+                <span>
+                    Register
+                </span>
+                <span>
+                    Logout
+                </span>
+            </div>
             <h1 className="text-3xl font-semibold text-center my-8">Choose Your Plan</h1>
             <div className="grid grid-cols-3 gap-8">
                 {!isVisible 
