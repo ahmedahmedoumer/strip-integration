@@ -1,5 +1,5 @@
 // Login.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
@@ -11,7 +11,9 @@ const Login = () => {
     const handleChange = e => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
-
+    useEffect(() => {
+        localStorage.getItem('token') ? window.location.href = '/plans' : window.location.pathname;
+      }, []);
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -32,6 +34,7 @@ const Login = () => {
     
             const data = await response.json();
             localStorage.setItem('token',data?.data?.token)
+            window.location.href='/plans'
             // Handle successful login response, such as storing token in localStorage
             console.log(data,"ahmedin");
         } catch (error) {
@@ -48,7 +51,7 @@ const Login = () => {
                     </h2>
                 </div>
                 <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-                    <div className="rounded-md shadow-sm -space-y-px">
+                    <div className="rounded-md shadow-sm grid space-y-4">
                         <div>
                             <label htmlFor="email" className="sr-only">
                                 Email address
@@ -80,10 +83,11 @@ const Login = () => {
                             />
                         </div>
                         </div>
-                        <div className='flex justify-end space-x-4'><span className='font-serif text-sm cursor-pointer'>Register</span><button type='submit' className=' bg-green-500 text-white px-4 py-1 rounded'>Login </button></div>
+                        <div className='flex justify-end space-x-4'><Link to={'/register'}><span className='font-serif text-sm cursor-pointer'> have no account?{' '}</span></Link><button type='submit' className=' bg-green-500 text-white px-4 py-1 rounded'>Login </button></div>
                         </form>
                         </div>
-                        </div>
+        </div>
+        
         )}
 
 export default Login;

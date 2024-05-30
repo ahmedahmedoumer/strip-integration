@@ -9,11 +9,16 @@ import Counter from './components/Counter';
 import SubscriptionPlans from './Subscriptions/SubscriptionPlans';
 import CardInput from './Subscriptions/CardInput';
 import Login from './components/Auth/Login';
+import Registration from './components/Auth/Registration';
 
 const routes = [
   {
-    path: '/',
+    path: '/login',
     element: <Login />,
+  },
+  {
+    path: '/register',
+    element: <Registration />,
   },
   {
     path: '/plans',
@@ -24,6 +29,7 @@ const routes = [
     element: <CardInput />,
   },
 ];
+
 
 createRoot(document.getElementById('root')).render(
   <Provider store={store}>

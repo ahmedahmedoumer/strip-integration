@@ -1,5 +1,5 @@
 // Registration.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Registration = () => {
@@ -19,6 +19,9 @@ const Registration = () => {
         // Add your registration logic here
         console.log(formData);
     };
+    useEffect(()=>{
+        !localStorage.getItem('token')?window.location.href='/plans' : window.location.pathname
+    },[]);
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -29,7 +32,7 @@ const Registration = () => {
                     </h2>
                 </div>
                 <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-                    <div className="rounded-md shadow-sm -space-y-px">
+                    <div className="rounded-md shadow-sm space-y-2">
                         <div>
                             <label htmlFor="name" className="sr-only">
                                 Name
@@ -104,7 +107,7 @@ const Registration = () => {
                 <div className="text-center">
                     <p className="mt-2 text-sm text-gray-600">
                         Already have an account?{' '}
-                        <Link to="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
+                        <Link to="/" className="font-medium text-indigo-600 hover:text-indigo-500">
                             Sign in
                         </Link>
                     </p>

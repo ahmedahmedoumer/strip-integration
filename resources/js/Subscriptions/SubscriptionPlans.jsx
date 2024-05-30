@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PlanCard from '../components/PlanCard';
 import { getPlanData } from '../store/actions/counterActions';
 import CardInput from './CardInput';
+import { Link } from 'react-router-dom';
 // import { getPlanData } from '../store/actions/counterActions';
 
 const SubscriptionPlans = (props) => {
@@ -65,15 +66,20 @@ const SubscriptionPlans = (props) => {
     
 
     return (
-        <div className="container mx-auto">
-             <div class="bg-gray-200 flex justify-end shadow-md space-x-4">
-                <span>
+        <div>
+             <div class="bg-gray-200 py-5 flex justify-end shadow-md space-x-4 pr-6">
+                <Link to={'/register'}>
+                  <span className='hover:text-black'>
                     Register
-                </span>
-                <span>
-                    Logout
-                </span>
+                  </span>
+                </Link>
+                <Link>
+                    <span onClick={()=>{localStorage.removeItem('token');window.location.href='/login'}}>
+                        Logout
+                    </span>
+                </Link>
             </div>
+        <div className="container mx-auto">
             <h1 className="text-3xl font-semibold text-center my-8">Choose Your Plan</h1>
             <div className="grid grid-cols-3 gap-8">
                 {!isVisible 
@@ -101,6 +107,7 @@ const SubscriptionPlans = (props) => {
             }
                 
             </div>
+        </div>
         </div>
     );
 };

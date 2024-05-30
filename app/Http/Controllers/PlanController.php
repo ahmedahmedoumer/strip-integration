@@ -32,7 +32,7 @@ class PlanController extends Controller
         $paymentMethod = $request->paymentMethodId;
 
         try {
-            $user->newSubscription('default', 'price_1PKyy7FlHt4LRnKPkkzBF0Gj') // Replace with your actual plan ID
+            $user->newSubscription('default', 'price_1PKyy7FlHt4LR') // Replace with your actual plan ID
                 ->create($paymentMethod);
                 
             return response()->json(['success' => true], 200);
